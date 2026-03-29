@@ -1,0 +1,179 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:09:48 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' has been recovered (tr. 17-17)
+
+[2026-03-02 13:09:48 #2 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 8366@jon
+
+[2026-03-02 13:09:49 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:09:49 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:09:49 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:09:49 #6 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:10:43 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 8426@jon
+
+[2026-03-02 13:10:44 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:10:44 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:10:44 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:10:44 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:22:52 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' has been recovered (tr. 18-18)
+
+[2026-03-02 13:22:52 #2 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 8943@jon
+
+[2026-03-02 13:22:52 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:22:52 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:22:52 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:22:52 #6 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:25:36 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 9219@jon
+
+[2026-03-02 13:25:36 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:25:37 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:25:37 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:25:37 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:31:42 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 9488@jon
+
+[2026-03-02 13:31:43 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:31:43 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:31:43 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:31:43 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:40:15 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 9836@jon
+
+[2026-03-02 13:40:15 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:40:15 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:40:15 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:40:15 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:45:51 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 10210@jon
+
+[2026-03-02 13:45:52 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:45:52 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:45:52 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:45:52 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:47:01 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 10276@jon
+
+[2026-03-02 13:47:01 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:47:01 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:47:01 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:47:01 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 13:59:17 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 10772@jon
+
+[2026-03-02 13:59:18 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 13:59:18 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 13:59:18 #4 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 13:59:18 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-02 14:00:45 #1 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' has been recovered (tr. 19-19)
+
+[2026-03-02 14:00:46 #2 store] 
+Database '/home/jon/Documentos/uni/software/proyects/Market26/src/main/resources/products.temp' is opened by 10870@jon
+
+[2026-03-02 14:00:46 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-02 14:00:46 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-02 14:00:46 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-02 14:00:46 #6 type] 
+Type domain.CounterOffer is not enhanced.
+
