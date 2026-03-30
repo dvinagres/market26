@@ -54,8 +54,11 @@ public class LoginGUI extends JFrame {
                                           + " " + ((Buyer)user).getName() + "!";
                         JOptionPane.showMessageDialog(null, msgBuyer);
                         
-                        AcceptSaleGUI acceptWindow = new AcceptSaleGUI((Buyer)user);
-                        acceptWindow.setVisible(true);
+//                      AcceptSaleGUI acceptWindow = new AcceptSaleGUI((Buyer)user);
+//                      acceptWindow.setVisible(true);
+                        InterBuyerGUI interBuyerWindow = new InterBuyerGUI((Buyer)user);
+                        interBuyerWindow.setVisible(true);
+                          
                     } else if (user instanceof Seller) {
                         // Mensaje de bienvenida dinámico para Vendedor
                         String msgSeller = ResourceBundle.getBundle("Etiquetas").getString("Login.WelcomeSeller") 

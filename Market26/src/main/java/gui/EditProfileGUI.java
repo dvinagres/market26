@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ResourceBundle; 
 import businessLogic.BLFacade;
 import java.awt.Font;
+import domain.Buyer;
 
 public class EditProfileGUI extends JFrame {
 
@@ -14,7 +15,7 @@ public class EditProfileGUI extends JFrame {
     private JTextField txtEmail;
     private JPasswordField txtPassword;
 
-	public EditProfileGUI() {
+	public EditProfileGUI(Buyer buyer) {
 		
 		// Cambiar todos los textos por dinámicos 
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("Register.Title"));

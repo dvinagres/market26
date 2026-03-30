@@ -33,3 +33,40 @@ New type java.util.ArrayList<java.lang.Object>
 [2026-03-30 10:45:23 #11 type.registry] 
 New type java.util.ArrayList<domain.Sale>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-30 17:41:21 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' has been recovered (tr. 1-6)
+
+[2026-03-30 17:41:26 #2 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 792@MacBook-Pro-de-Daniel.local
+
+[2026-03-30 17:41:26 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-30 17:41:26 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-30 17:41:26 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-03-30 17:41:26 #6 type] 
+Type domain.Buyer is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-30 17:50:24 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 875@MacBook-Pro-de-Daniel.local
+
+[2026-03-30 17:50:24 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-30 17:50:24 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-30 17:50:24 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-03-30 17:50:24 #5 type] 
+Type domain.Buyer is not enhanced.
+

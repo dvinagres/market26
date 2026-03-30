@@ -37,12 +37,24 @@ public class InterBuyerGUI extends JFrame {
         contentPane.add(lblSelect);
         
         // Botón para comprar
-        JButton btnBuy = new JButton("Empezar a comprar"); 
+        JButton btnBuy = new JButton("Empezar a comprar");
         contentPane.add(btnBuy);
+        btnBuy.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		AcceptSaleGUI acceptWindow = new AcceptSaleGUI(buyer);
+        		acceptWindow.setVisible(true);
+        	}
+        });
         
         
         // Botón para editar perfil
         JButton btnEdit = new JButton("Editar perfil"); 
+        btnEdit.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		EditProfileGUI editWindow = new EditProfileGUI(buyer);
+        		editWindow.setVisible(true);
+        	}
+        });
         contentPane.add(btnEdit);
 
 	}
