@@ -1,0 +1,35 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-03-30 10:44:44 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 13014@MacBook-Pro-de-Daniel.local
+
+[2026-03-30 10:44:53 #2 type.registry] 
+New type domain.Seller
+
+[2026-03-30 10:44:53 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-03-30 10:44:53 #4 type.registry] 
+New type domain.Sale
+
+[2026-03-30 10:44:53 #5 type] 
+Type domain.Sale is not enhanced.
+
+[2026-03-30 10:44:53 #6 type.registry] 
+New type domain.CounterOffer
+
+[2026-03-30 10:44:53 #7 type.registry] 
+New type domain.Buyer
+
+[2026-03-30 10:44:53 #8 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-03-30 10:44:53 #9 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-03-30 10:45:23 #10 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2026-03-30 10:45:23 #11 type.registry] 
+New type java.util.ArrayList<domain.Sale>
+
