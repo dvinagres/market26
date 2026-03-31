@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import dataAccess.DataAccess;
 import domain.Sale;
+import domain.CounterOffer;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -136,42 +137,63 @@ public class BLFacadeImplementation  implements BLFacade {
 		return res;
 	}
 
-	public List<domain.Sale> getAcceptedSales(String sellerEmail) {
+	public List<Sale> getAcceptedSales(String sellerEmail) {
 		dbManager.open();
-		List<domain.Sale> sales = dbManager.getAcceptedSales(sellerEmail);
+		List<Sale> sales = dbManager.getAcceptedSales(sellerEmail);
 		dbManager.close();
 		return sales;
 	}
 	
-	public java.util.List<domain.Sale> getActiveSalesByTitle(String title) {
+	public List<Sale> getActiveSalesByTitle(String title) {
 		dbManager.open(); 
-		java.util.List<domain.Sale> list = dbManager.getActiveSalesByTitle(title);
+		List<Sale> list = dbManager.getActiveSalesByTitle(title);
 		dbManager.close();
 		return list;
 	}
 	
 	// --- 1. Guardar Contraoferta ---
-		public boolean makeCounterOffer(String buyerEmail, Integer saleNumber, float offeredPrice) {
-			dbManager.open(); // Recuerda usar tu versión de open
-			boolean res = dbManager.makeCounterOffer(buyerEmail, saleNumber, offeredPrice);
-			dbManager.close();
-			return res;
-		}
+	public boolean makeCounterOffer(String buyerEmail, Integer saleNumber, float offeredPrice) {
+		dbManager.open(); // Recuerda usar tu versión de open
+		boolean res = dbManager.makeCounterOffer(buyerEmail, saleNumber, offeredPrice);
+		dbManager.close();
+		return res;
+	}
 
-		// --- 2. Obtener Contraofertas Pendientes ---
-		public java.util.List<domain.CounterOffer> getPendingCounterOffers(String sellerEmail) {
-			dbManager.open();
-			java.util.List<domain.CounterOffer> list = dbManager.getPendingCounterOffers(sellerEmail);
-			dbManager.close();
-			return list;
-		}
+	// --- 2. Obtener Contraofertas Pendientes ---
+	public List<CounterOffer> getPendingCounterOffers(String sellerEmail) {
+		dbManager.open();
+		List<CounterOffer> list = dbManager.getPendingCounterOffers(sellerEmail);
+		dbManager.close();			
+		return list;
+	}
 
-		// --- 3. Aceptar o Rechazar Contraoferta ---
-		public boolean resolveCounterOffer(Integer counterOfferId, boolean accept) {
-			dbManager.open();
-			boolean res = dbManager.resolveCounterOffer(counterOfferId, accept);
-			dbManager.close();
-			return res;
-		}
+	// --- 3. Aceptar o Rechazar Contraoferta ---
+	public boolean resolveCounterOffer(Integer counterOfferId, boolean accept) {
+		dbManager.open();
+		boolean res = dbManager.resolveCounterOffer(counterOfferId, accept);
+		dbManager.close();
+		return res;
+	}
+		
+	// Edit profile
+	public boolean editName(String currentMail, String newName) {	
+		dbManager.open();
+		boolean res = dbManager.editName(currentMail, newName);
+		return res;
+		
+	}
+	
+	public boolean editMail(String currentMail, String newMail) {
+		dbManager.open();
+		boolean res = dbManager.editMail(currentMail, newMail);
+		return true;
+	}
+	
+	public boolean editPassword(String currentMail, String newPass) {
+		dbManager.open();
+		boolean res = dbManager.editPassword(currentMail, newPass);
+		return true;
+	}
+		
 }
 

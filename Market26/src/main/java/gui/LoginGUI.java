@@ -65,8 +65,10 @@ public class LoginGUI extends JFrame {
                                            + " " + ((Seller)user).getName() + "!";
                         JOptionPane.showMessageDialog(null, msgSeller);
                         
-                        ViewAcceptedSalesGUI viewSalesWindow = new ViewAcceptedSalesGUI((Seller)user);
-                        viewSalesWindow.setVisible(true);
+//                      ViewAcceptedSalesGUI viewSalesWindow = new ViewAcceptedSalesGUI((Seller)user);
+//                      viewSalesWindow.setVisible(true);
+                        InterSellerGUI interSellerWindow = new InterSellerGUI((Seller)user);
+                        interSellerWindow.setVisible(true);
                     }
                     dispose(); 
                 } else {

@@ -93,11 +93,11 @@ public class QuerySalesGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
-					List<domain.Sale> sales=facade.getPublishedSales(jTextFieldSearch.getText(),today);
+					List<Sale> sales=facade.getPublishedSales(jTextFieldSearch.getText(),today);
 
 					if (sales.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
 					else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
-					for (domain.Sale sale:sales){
+					for (Sale sale:sales){
 						Vector<Object> row = new Vector<Object>();
 						row.add(sale.getTitle());
 						row.add(sale.getPrice());

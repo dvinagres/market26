@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import domain.Sale;
+import domain.CounterOffer;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -69,16 +70,19 @@ public interface BLFacade  {
 	public boolean registerBuyer(String name, String email, String password);
 	public Object login(String email, String password);
 	public boolean acceptSale(String buyerEmail, Integer saleNumber);
-	public List<domain.Sale> getAcceptedSales(String sellerEmail);
+	public List<Sale> getAcceptedSales(String sellerEmail);
 	
 	
-	public java.util.List<domain.Sale> getActiveSalesByTitle(String title);
+	public List<Sale> getActiveSalesByTitle(String title);
 	
 	//
 	// --- Métodos de Contraoferta ---
 	public boolean makeCounterOffer(String buyerEmail, Integer saleNumber, float offeredPrice);
-	
-	public java.util.List<domain.CounterOffer> getPendingCounterOffers(String sellerEmail);
-	
+	public List<CounterOffer> getPendingCounterOffers(String sellerEmail);
 	public boolean resolveCounterOffer(Integer counterOfferId, boolean accept);
+	
+	// -- Métodos para editar el perfil --
+	public boolean editName(String currentMail, String newName);
+	public boolean editMail(String currentMail, String newMail);
+	public boolean editPassword(String currentMail, String newPass);
 }

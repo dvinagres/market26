@@ -23,6 +23,7 @@ import configuration.UtilDate;
 import domain.Seller;
 import domain.Sale;
 import domain.Buyer;
+import domain.CounterOffer;
 
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
@@ -335,10 +336,10 @@ public void open(){
 		
 		// Devuelve una lista con todas las ofertas disponibles que tengan ese nombre
 		// Devuelve una lista con todas las ofertas disponibles que CONTENGAN ese nombre
-		public java.util.List<domain.Sale> getActiveSalesByTitle(String title) {
+		public List<Sale> getActiveSalesByTitle(String title) {
 			// Cambiamos el '=' por 'LIKE'
-			javax.persistence.TypedQuery<domain.Sale> query = db.createQuery(
-				"SELECT s FROM Sale s WHERE s.title LIKE ?1 AND s.buyer IS NULL", domain.Sale.class);
+			javax.persistence.TypedQuery<Sale> query = db.createQuery(
+				"SELECT s FROM Sale s WHERE s.title LIKE ?1 AND s.buyer IS NULL", Sale.class);
 			
 			// Añadimos los '%' para que busque la palabra en cualquier parte del texto
 			query.setParameter(1, "%" + title + "%");
@@ -347,12 +348,12 @@ public void open(){
 		// --- 1. Guardar una nueva contraoferta ---
 		public boolean makeCounterOffer(String buyerEmail, Integer saleNumber, float offeredPrice) {
 			db.getTransaction().begin();
-			domain.Buyer buyer = db.find(domain.Buyer.class, buyerEmail);
-			domain.Sale sale = db.find(domain.Sale.class, saleNumber);
+			Buyer buyer = db.find(Buyer.class, buyerEmail);
+			Sale sale = db.find(Sale.class, saleNumber);
 
 			// Comprobamos que existan y que la oferta no esté ya vendida
 			if (buyer != null && sale != null && sale.getBuyer() == null) {
-				domain.CounterOffer offer = new domain.CounterOffer(offeredPrice, buyer, sale);
+				CounterOffer offer = new CounterOffer(offeredPrice, buyer, sale);
 				db.persist(offer); // Guardamos la contraoferta
 				sale.addCounterOffer(offer); // La enlazamos con la oferta original
 				db.getTransaction().commit();
@@ -363,11 +364,11 @@ public void open(){
 		}
 
 		// --- 2. Buscar las contraofertas que el Vendedor tiene que revisar ---
-		public java.util.List<domain.CounterOffer> getPendingCounterOffers(String sellerEmail) {
+		public List<CounterOffer> getPendingCounterOffers(String sellerEmail) {
 			// Buscamos contraofertas cuyo estado sea "Pendiente" y que pertenezcan a las ofertas de este vendedor
-			javax.persistence.TypedQuery<domain.CounterOffer> query = db.createQuery(
+			javax.persistence.TypedQuery<CounterOffer> query = db.createQuery(
 				"SELECT c FROM CounterOffer c WHERE c.sale.seller.email = ?1 AND c.status = 'Pendiente'", 
-				domain.CounterOffer.class);
+				CounterOffer.class);
 			query.setParameter(1, sellerEmail);
 			return query.getResultList();
 		}
@@ -375,13 +376,13 @@ public void open(){
 		// --- 3. El Vendedor decide: Aceptar o Rechazar ---
 		public boolean resolveCounterOffer(Integer counterOfferId, boolean accept) {
 			db.getTransaction().begin();
-			domain.CounterOffer offer = db.find(domain.CounterOffer.class, counterOfferId);
+			CounterOffer offer = db.find(CounterOffer.class, counterOfferId);
 			
 			if (offer != null && offer.getStatus().equals("Pendiente")) {
 				if (accept) {
 					offer.setStatus("Aceptada");
-					domain.Sale sale = offer.getSale();
-					domain.Buyer buyer = offer.getBuyer();
+					Sale sale = offer.getSale();
+					Buyer buyer = offer.getBuyer();
 					
 					// ¡Se efectúa la venta al nuevo precio regateado!
 					sale.setBuyer(buyer);
@@ -389,7 +390,7 @@ public void open(){
 					buyer.addAcceptedSale(sale);
 					
 					// Opcional pero recomendado: Rechazar automáticamente a los demás que pujaban por lo mismo
-					for (domain.CounterOffer other : sale.getCounterOffers()) {
+					for (CounterOffer other : sale.getCounterOffers()) {
 						if (other.getStatus().equals("Pendiente") && !other.getId().equals(counterOfferId)) {
 							other.setStatus("Rechazada");
 						}
@@ -404,4 +405,100 @@ public void open(){
 			db.getTransaction().rollback();
 			return false;
 		}
+		
+		// Edit profile
+		// -- 1. editName --
+		public boolean editName(String currentMail, String newName) {
+			db.getTransaction().begin();
+			// Asegurar que el nuevo nombre no está ocupado 
+			boolean existSeller = !db.createQuery("SELECT s FROM Seller s WHERE s.name = :nombre")
+					.setParameter("nombre", newName).getResultList().isEmpty();
+			
+			boolean existBuyer = !db.createQuery("SELECT b FROM Buyer b WHERE b.name = :nombre")
+					.setParameter("nombre", newName).getResultList().isEmpty();
+			
+			if(existSeller || existBuyer) {
+				db.getTransaction().rollback();
+				return false;
+			}
+			
+			Seller s = db.find(Seller.class, currentMail);
+	        if (s != null) {
+	            s.setName(newName);
+	            db.getTransaction().commit();
+	            return true;
+	        }
+	        
+	        Buyer b = db.find(Buyer.class, currentMail);
+	        if (b != null) {
+	            b.setName(newName);
+	            db.getTransaction().commit();
+	            return true;
+	        }
+	        
+	        db.getTransaction().rollback();
+	        return false;
+		} 
+		
+		// -- 2. editMail --
+		public boolean editMail(String currentMail, String newMail) {
+			// Si el nuevo email es igual, false
+			if (currentMail.equals(newMail)) {
+		        return false; 
+		    }
+			
+			db.getTransaction().begin();
+			
+			// Asegurar que el nuevo email no está ocupado
+			if(db.find(Seller.class, newMail) != null || db.find(Buyer.class, newMail) != null) {
+				db.getTransaction().rollback();
+				return false;
+			}
+			
+			// Hay que hacer un nuevo usuario en la BBDD porque email es primary key
+			Seller oldSeller = db.find(Seller.class, currentMail);
+			
+			if(oldSeller != null) {
+				Seller newSeller = new Seller(newMail, oldSeller.getName());
+				db.remove(oldSeller);
+				db.persist(newSeller);
+				db.getTransaction().commit();
+				return true;
+			}
+			
+			Buyer oldBuyer = db.find(Buyer.class, currentMail);
+			
+			if(oldBuyer != null) {
+				Buyer newBuyer = new Buyer(newMail, oldBuyer.getName(), oldBuyer.getPassword());
+				db.remove(oldBuyer);
+				db.persist(newBuyer);
+				db.getTransaction().commit();
+				return true;
+			}
+	        
+	        db.getTransaction().rollback();
+	        return false;
+		} 
+		
+		// -- 3. editPassword --
+		public boolean editPassword(String currentMail, String newPass) {
+			db.getTransaction().begin();
+			
+			Seller s = db.find(Seller.class, currentMail);
+	        if (s != null) {
+	            s.setPassword(newPass);
+	            db.getTransaction().commit();
+	            return true;
+	        }
+	        
+	        Buyer b = db.find(Buyer.class, currentMail);
+	        if (b != null) {
+	        	b.setPassword(newPass);
+	            db.getTransaction().commit();
+	            return true;
+	        }
+	        
+	        db.getTransaction().rollback();
+	        return false;
+		} 
 }
