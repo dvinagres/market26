@@ -2,10 +2,8 @@
 
 1. El vendedor decide a quién vende el producto entre las propuestas realizadas por los compradores
 
-2. El comprador paga el producto
+2. El comprador puede puntuar al vendedor una vez que pague el producto
 
-3. El comprador puede puntuar al vendedor una vez que pague el producto
+3. El comprador puede denunciar al vendedor al ver el producto
 
-4. El comprador puede denunciar al vendedor al ver el producto
-
-5. El vendedor y el comprador pueden editar su perfil de la aplicación
+4. El vendedor y el comprador pueden editar su perfil de la aplicación
