@@ -7,3 +7,5 @@
 3. El comprador puede denunciar al vendedor al ver el producto
 
 4. El vendedor y el comprador pueden editar su perfil de la aplicación
+
+5. Al final del mes, el vendedor recibe un informe con las valoraciones de los compradores
