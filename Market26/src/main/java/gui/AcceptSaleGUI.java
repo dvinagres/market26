@@ -7,6 +7,7 @@ import java.util.ResourceBundle; // Importante
 import businessLogic.BLFacade;
 import domain.Buyer;
 import domain.Sale;
+import domain.Seller;
 
 public class AcceptSaleGUI extends JFrame {
     private JTextField txtSaleTitle;
@@ -39,14 +40,30 @@ public class AcceptSaleGUI extends JFrame {
         getContentPane().add(comboResults);
 
         JButton btnBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BtnBuy"));
-        btnBuy.setBounds(30, 140, 200, 30);
+        btnBuy.setBounds(30, 127, 200, 30);
         btnBuy.setEnabled(false); 
         getContentPane().add(btnBuy);
 
         JButton btnCounterOffer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BtnCounterOffer"));
-        btnCounterOffer.setBounds(240, 140, 190, 30);
+        btnCounterOffer.setBounds(240, 127, 190, 30);
         btnCounterOffer.setEnabled(false); 
         getContentPane().add(btnCounterOffer);
+        
+        // Botón para hacer la review
+        JButton btnRate = new JButton("Valorar vendedor"); // Añadir lenguajes
+        btnRate.setBounds(158, 169, 150, 29);
+        btnRate.setEnabled(false);
+        getContentPane().add(btnRate);
+        btnRate.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		int selectedIdx = comboResults.getSelectedIndex();
+        		Sale selectedSale = currentSalesList.get(selectedIdx);
+        		Seller target = selectedSale.getSeller();
+        		
+        		RateGUI rateWindow = new RateGUI(currentBuyer, target);
+        		rateWindow.setVisible(true);
+        	}
+        });
 
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,13 +77,18 @@ public class AcceptSaleGUI extends JFrame {
                     comboResults.addItem(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.NoResults"));
                     btnBuy.setEnabled(false);
                     btnCounterOffer.setEnabled(false);
+                    btnRate.setEnabled(false);
                 } else {
                     for (Sale s : currentSalesList) {
-                        comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
-                            ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€");
+//                       comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
+//                           ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€");
+                    	// Añadido el nombre del vendedor a la lista de las ventas
+                    	 comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
+                             ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€" + " | " + s.getSeller().getName());
                     }
                     btnBuy.setEnabled(true); 
                     btnCounterOffer.setEnabled(true);
+                    btnRate.setEnabled(true);
                 }
             }
         });

@@ -1,5 +1,6 @@
 package domain;
 
+// SELLER NECESITA UNA LISTA CON SUS REVIEWS!! (CU enviar al final de mes)
 import java.io.File;
 
 import java.io.Serializable;
