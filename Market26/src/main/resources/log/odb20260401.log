@@ -93,3 +93,86 @@ Type domain.Buyer is not enhanced.
 [2026-04-01 09:25:08 #7 type] 
 Type domain.Review is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-01 10:25:45 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' has been recovered (tr. 35-35)
+
+[2026-04-01 10:25:51 #2 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 925@MacBook-Pro-de-Daniel.local
+
+[2026-04-01 10:25:51 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-01 10:25:51 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-01 10:25:51 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-01 10:25:51 #6 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-01 10:25:51 #7 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-01 10:29:26 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 970@MacBook-Pro-de-Daniel.local
+
+[2026-04-01 10:29:27 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-01 10:29:27 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-01 10:29:27 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-01 10:29:27 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-01 10:29:27 #6 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-01 10:30:21 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 984@MacBook-Pro-de-Daniel.local
+
+[2026-04-01 10:30:21 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-01 10:30:21 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-01 10:30:21 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-01 10:30:21 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-01 10:30:21 #6 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-01 10:31:08 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 994@MacBook-Pro-de-Daniel.local
+
+[2026-04-01 10:31:08 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-01 10:31:08 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-01 10:31:08 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-01 10:31:08 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-01 10:31:08 #6 type] 
+Type domain.Review is not enhanced.
+

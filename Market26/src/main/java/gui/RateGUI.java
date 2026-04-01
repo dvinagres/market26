@@ -41,7 +41,7 @@ public class RateGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		setTitle("Valoración");
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("RateGUI.Title") + currentSeller.getName());
 		contentPane.setLayout(null);
 		
 		JRadioButton rdbtn1 = new JRadioButton("1");
@@ -73,15 +73,15 @@ public class RateGUI extends JFrame {
 		textComment.setBounds(27, 123, 388, 82);
 		contentPane.add(textComment);
 		
-		JLabel lblRate = new JLabel("Valora");
+		JLabel lblRate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RateGUI.Rate"));
 		lblRate.setBounds(27, 26, 61, 16);
 		contentPane.add(lblRate);
 		
-		JLabel lblComment = new JLabel("Deja un comentario sobre el vendedor");
+		JLabel lblComment = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RateGUI.Comment") + currentSeller.getName());
 		lblComment.setBounds(27, 95, 388, 16);
 		contentPane.add(lblComment);
 		
-		JButton btnSend = new JButton("Enviar");
+		JButton btnSend = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 		btnSend.setBounds(27, 217, 117, 29);
 		contentPane.add(btnSend);
 		btnSend.addActionListener(new ActionListener() {
@@ -96,7 +96,7 @@ public class RateGUI extends JFrame {
 				else if(rdbtn5.isSelected()) score = 5;
 				
 				if(score == 0) {
-					JOptionPane.showMessageDialog(null, "Selecciona una puntuación");
+					JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("RateGUI.Error"));
 					return;
 				}
 				
@@ -110,8 +110,8 @@ public class RateGUI extends JFrame {
 				
 				boolean ok = facade.addReview(currentSeller.getEmail(), review);
 				
-				String okMsg = "Valoración enviada";
-				String noMsg = "Error al enviar la valoración";
+				String okMsg = ResourceBundle.getBundle("Etiquetas").getString("RateGUI.RateOk");
+				String noMsg = ResourceBundle.getBundle("Etiquetas").getString("RateGUI.RateNo");
 				
 				if (ok) {
 					JOptionPane.showMessageDialog(null, okMsg);
@@ -123,7 +123,7 @@ public class RateGUI extends JFrame {
 			}
 		});
 		
-		JButton btnCancel = new JButton("Cancelar");
+		JButton btnCancel = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Cancel"));
 		btnCancel.setBounds(298, 217, 117, 29);
 		contentPane.add(btnCancel);
 		btnCancel.addActionListener(new ActionListener() {

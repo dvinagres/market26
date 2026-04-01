@@ -50,7 +50,7 @@ public class AcceptSaleGUI extends JFrame {
         getContentPane().add(btnCounterOffer);
         
         // Botón para hacer la review
-        JButton btnRate = new JButton("Valorar vendedor"); // Añadir lenguajes
+        JButton btnRate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Rate")); 
         btnRate.setBounds(158, 169, 150, 29);
         btnRate.setEnabled(false);
         getContentPane().add(btnRate);
