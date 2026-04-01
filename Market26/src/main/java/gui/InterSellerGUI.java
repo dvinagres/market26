@@ -43,17 +43,15 @@ public class InterSellerGUI extends JFrame {
         	}
         });
         
-        
         // Botón para editar perfil
         JButton btnEdit = new JButton(ResourceBundle.getBundle("Etiquetas").getString("InterSellerGUI.Edit")); 
+        contentPane.add(btnEdit);
         btnEdit.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		EditProfileGUI editWindow = new EditProfileGUI(seller);
         		editWindow.setVisible(true);
         	}
         });
-        contentPane.add(btnEdit);
-
 	}
 
 }

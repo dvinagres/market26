@@ -58,9 +58,9 @@ public class AcceptSaleGUI extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		int selectedIdx = comboResults.getSelectedIndex();
         		Sale selectedSale = currentSalesList.get(selectedIdx);
-        		Seller target = selectedSale.getSeller();
+        		Seller targetSeller = selectedSale.getSeller();
         		
-        		RateGUI rateWindow = new RateGUI(currentBuyer, target);
+        		RateGUI rateWindow = new RateGUI(currentBuyer, targetSeller);
         		rateWindow.setVisible(true);
         	}
         });
@@ -82,6 +82,7 @@ public class AcceptSaleGUI extends JFrame {
                     for (Sale s : currentSalesList) {
 //                       comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
 //                           ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€");
+                    	
                     	// Añadido el nombre del vendedor a la lista de las ventas
                     	 comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
                              ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€" + " | " + s.getSeller().getName());

@@ -8,6 +8,7 @@ public class Review implements Serializable {
 	@Id
 	@GeneratedValue
 	private int idx;
+	private String buyerName;
 	private int score;
 	private String comment;
 	private String date;
@@ -16,7 +17,8 @@ public class Review implements Serializable {
 		super();
 	}
 	
-	public Review(int score, String comment, String date) {
+	public Review(String buyerName, int score, String comment, String date) {
+		this.buyerName = buyerName;
 		this.score = score;
 		this.comment = comment;
 		this.date = date;
@@ -44,5 +46,10 @@ public class Review implements Serializable {
 	
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	@Override
+	public String toString() {
+		return "[Buyer: " + buyerName + " | Score: " + score + " | Comment: " + comment + " | Date: " + date + "]";
 	}
 }

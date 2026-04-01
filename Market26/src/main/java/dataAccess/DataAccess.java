@@ -24,7 +24,7 @@ import domain.Seller;
 import domain.Sale;
 import domain.Buyer;
 import domain.CounterOffer;
-
+import domain.Review;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -501,4 +501,32 @@ public void open(){
 	        db.getTransaction().rollback();
 	        return false;
 		} 
+		
+		// Review
+		// -- 1. addReview --
+		public boolean addReview(String sellerMail, Review review) {
+			db.getTransaction().begin();
+			
+			Seller s = db.find(Seller.class, sellerMail);
+			if (s != null) {
+				s.addReviewToList(review);
+	            db.getTransaction().commit();
+	            return true;
+	        }
+			
+			db.getTransaction().rollback();
+	        return false;
+		}
+		
+		// --2. getSellerReviews -- 
+		// Para debuggear este caso de uso en concreto y posible utilidad en el caso de uso de envío mensual
+		public List<Review> getSellerReviews(String sellerMail){
+			List<Review> r = new ArrayList<Review>();
+			
+			Seller s = db.find(Seller.class, sellerMail);
+			if(s != null) {
+				r = s.getReviews();
+			}
+			return r;
+		}
 }

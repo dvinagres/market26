@@ -6,6 +6,7 @@ import java.util.List;
 
 import domain.Sale;
 import domain.CounterOffer;
+import domain.Review;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -85,4 +86,8 @@ public interface BLFacade  {
 	public boolean editName(String currentMail, String newName);
 	public boolean editMail(String currentMail, String newMail);
 	public boolean editPassword(String currentMail, String newPass);
+	
+	// -- Métodos para review --
+	public boolean addReview(String sellerMail, Review review);
+	public List<Review> getSellerReviews(String sellerMail);
 }

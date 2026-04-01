@@ -9,6 +9,7 @@ import javax.jws.WebService;
 import dataAccess.DataAccess;
 import domain.Sale;
 import domain.CounterOffer;
+import domain.Review;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -186,13 +187,26 @@ public class BLFacadeImplementation  implements BLFacade {
 	public boolean editMail(String currentMail, String newMail) {
 		dbManager.open();
 		boolean res = dbManager.editMail(currentMail, newMail);
-		return true;
+		return res;
 	}
 	
 	public boolean editPassword(String currentMail, String newPass) {
 		dbManager.open();
 		boolean res = dbManager.editPassword(currentMail, newPass);
-		return true;
+		return res;
+	}
+	
+	// Review
+	public boolean addReview(String sellerMail, Review review) {
+		dbManager.open();
+		boolean res = dbManager.addReview(sellerMail, review);
+		return res;
+	}
+	
+	public List<Review> getSellerReviews(String sellerMail){
+		dbManager.open();
+		List<Review> r = dbManager.getSellerReviews(sellerMail);
+		return r;
 	}
 		
 }

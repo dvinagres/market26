@@ -44,15 +44,14 @@ public class InterBuyerGUI extends JFrame {
         });
         
         // Botón para editar perfil
-        JButton btnEdit = new JButton(ResourceBundle.getBundle("Etiquetas").getString("InterBuyerGUI.Edit")); 
+        JButton btnEdit = new JButton(ResourceBundle.getBundle("Etiquetas").getString("InterBuyerGUI.Edit"));
+        contentPane.add(btnEdit);
         btnEdit.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		EditProfileGUI editWindow = new EditProfileGUI(buyer);
         		editWindow.setVisible(true);
         	}
         });
-        contentPane.add(btnEdit);
-
 	}
 
 }

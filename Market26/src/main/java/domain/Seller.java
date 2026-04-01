@@ -1,6 +1,4 @@
 package domain;
-
-// SELLER NECESITA UNA LISTA CON SUS REVIEWS!! (CU enviar al final de mes)
 import java.io.File;
 
 import java.io.Serializable;
@@ -30,6 +28,11 @@ public class Seller implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Sale> sales=new ArrayList<Sale>();
 	private String password;
+	
+	// Añadida una lista para CU de la valoración y envío al final de mes
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	private List<Review> reviews = new ArrayList<Review>();
 
 	public Seller() {
 		super();
@@ -57,7 +60,6 @@ public class Seller implements Serializable {
 		this.name = name;
 	}
 	
-	//
 	public List<Sale> getSales(){
 		return sales;
 	}
@@ -71,8 +73,15 @@ public class Seller implements Serializable {
 		this.password=password;
 	}
 	
-
+	// Método para añadir las reviews
+	public void addReviewToList(Review r) {
+		this.reviews.add(r);
+	}
 	
+	// Método para ver reviews
+	public List<Review> getReviews(){
+		return reviews;
+	}
 	
 	public String toString(){
 		return email+";"+name+sales;

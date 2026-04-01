@@ -12,22 +12,36 @@ import java.awt.GridLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import domain.Buyer;
 import domain.Seller;
+import domain.Review;
+import businessLogic.BLFacade;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class RateGUI extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private Buyer currentBuyer;
+	private Seller currentSeller;
 
 	public RateGUI(Buyer buyer, Seller seller) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.currentBuyer = buyer;
+		this.currentSeller = seller;
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		setTitle("Valoración");
 		contentPane.setLayout(null);
 		
 		JRadioButton rdbtn1 = new JRadioButton("1");
@@ -59,14 +73,6 @@ public class RateGUI extends JFrame {
 		textComment.setBounds(27, 123, 388, 82);
 		contentPane.add(textComment);
 		
-		JButton btnSend = new JButton("Enviar");
-		btnSend.setBounds(27, 217, 117, 29);
-		contentPane.add(btnSend);
-		
-		JButton btnCancel = new JButton("Cancelar");
-		btnCancel.setBounds(298, 217, 117, 29);
-		contentPane.add(btnCancel);
-		
 		JLabel lblRate = new JLabel("Valora");
 		lblRate.setBounds(27, 26, 61, 16);
 		contentPane.add(lblRate);
@@ -74,7 +80,57 @@ public class RateGUI extends JFrame {
 		JLabel lblComment = new JLabel("Deja un comentario sobre el vendedor");
 		lblComment.setBounds(27, 95, 388, 16);
 		contentPane.add(lblComment);
-		setTitle("Valoración");
-
+		
+		JButton btnSend = new JButton("Enviar");
+		btnSend.setBounds(27, 217, 117, 29);
+		contentPane.add(btnSend);
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Recoger resultados de los objetos para crear el Review
+				int score = 0;
+				
+				if(rdbtn1.isSelected()) score = 1;
+				else if(rdbtn2.isSelected()) score = 2;
+				else if(rdbtn3.isSelected()) score = 3;
+				else if(rdbtn4.isSelected()) score = 4;
+				else if(rdbtn5.isSelected()) score = 5;
+				
+				if(score == 0) {
+					JOptionPane.showMessageDialog(null, "Selecciona una puntuación");
+					return;
+				}
+				
+				String buyerName = currentBuyer.getName();
+				String comment = textComment.getText();
+				// java.time.LocalDate.now() coge la fecha actual
+				String date = LocalDate.now().toString();
+				Review review = new Review(buyerName, score, comment, date);
+		
+				BLFacade facade = MainGUI.getBusinessLogic();
+				
+				boolean ok = facade.addReview(currentSeller.getEmail(), review);
+				
+				String okMsg = "Valoración enviada";
+				String noMsg = "Error al enviar la valoración";
+				
+				if (ok) {
+					JOptionPane.showMessageDialog(null, okMsg);
+				} else {
+					JOptionPane.showMessageDialog(null, noMsg);
+				}
+				
+				dispose();
+			}
+		});
+		
+		JButton btnCancel = new JButton("Cancelar");
+		btnCancel.setBounds(298, 217, 117, 29);
+		contentPane.add(btnCancel);
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
 	}
 }
