@@ -33,6 +33,8 @@ public class Seller implements Serializable {
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	private List<Review> reviews = new ArrayList<Review>();
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	private List<Report> reports = new ArrayList<Report>();
 
 	public Seller() {
 		super();
@@ -83,6 +85,16 @@ public class Seller implements Serializable {
 		return reviews;
 	}
 	
+	// Método para añadir una denuncia
+		public void addReportToList(Report r) {
+			this.reports.add(r);
+		}
+		
+		// Método para ver denuncias
+		public List<Report> getReports(){
+			return reports;
+		}
+		
 	public String toString(){
 		return email+";"+name+sales;
 	}

@@ -90,4 +90,9 @@ public interface BLFacade  {
 	// -- Métodos para review --
 	public boolean addReview(String sellerMail, Review review);
 	public List<Review> getSellerReviews(String sellerMail);
+	// -- Métodos para Denuncias (Reports) --
+	public boolean addReport(String sellerMail, domain.Report report);
+		
+		// -- Métodos para Pagos --
+	public boolean paySale(Integer saleNumber, String paymentMethod);
 }

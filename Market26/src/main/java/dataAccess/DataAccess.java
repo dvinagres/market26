@@ -529,4 +529,34 @@ public void open(){
 			}
 			return r;
 		}
+		
+		// --- Denuncias (Reports) ---
+		public boolean addReport(String sellerMail, domain.Report report) {
+			db.getTransaction().begin();
+					
+			domain.Seller s = db.find(domain.Seller.class, sellerMail);
+			if (s != null) {
+				s.addReportToList(report); // Añadimos la denuncia a la lista del vendedor
+				db.getTransaction().commit();
+				return true;
+			}
+					
+			db.getTransaction().rollback();
+			return false;
+		}
+				
+		// --- Pagos ---
+		public boolean paySale(Integer saleNumber, String paymentMethod) {
+			db.getTransaction().begin();
+			domain.Sale s = db.find(domain.Sale.class, saleNumber);
+					
+			// Si la oferta existe y ya tiene un comprador asignado...
+			if (s != null && s.getBuyer() != null) {
+				s.setPaymentMethod(paymentMethod); // Efectivo o Tarjeta
+				db.getTransaction().commit();
+				return true;
+			}
+			db.getTransaction().rollback();
+			return false;
+		}
 }
