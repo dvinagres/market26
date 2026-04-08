@@ -208,6 +208,20 @@ public class BLFacadeImplementation  implements BLFacade {
 		List<Review> r = dbManager.getSellerReviews(sellerMail);
 		return r;
 	}
+	// --- Report (Denuncias) ---
+		public boolean addReport(String sellerMail, domain.Report report) {
+			dbManager.open();
+			boolean res = dbManager.addReport(sellerMail, report);
+			dbManager.close();
+			return res;
+		}
 		
+		// --- Pago de Ofertas ---
+		public boolean paySale(Integer saleNumber, String paymentMethod) {
+			dbManager.open();
+			boolean res = dbManager.paySale(saleNumber, paymentMethod);
+			dbManager.close();
+			return res;
+		}
 }
 

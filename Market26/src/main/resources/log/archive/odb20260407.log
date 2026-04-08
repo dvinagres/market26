@@ -1,0 +1,210 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 19:56:07 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' has been recovered (tr. 36-36)
+
+[2026-04-07 19:56:08 #2 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 548@MININT-01SALKA
+
+[2026-04-07 19:56:08 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 19:56:08 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 19:56:08 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 19:56:08 #6 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 19:56:08 #7 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 19:56:24 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 24456@MININT-01SALKA
+
+[2026-04-07 19:56:24 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 19:56:24 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 19:56:24 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 19:56:24 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 19:56:25 #6 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 20:01:30 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 19256@MININT-01SALKA
+
+[2026-04-07 20:01:30 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 20:01:30 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 20:01:30 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 20:01:30 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 20:01:30 #6 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 21:07:47 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' has been recovered (tr. 37-38)
+
+[2026-04-07 21:07:47 #2 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 6556@MININT-01SALKA
+
+[2026-04-07 21:07:48 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 21:07:48 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 21:07:48 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 21:07:48 #6 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 21:07:48 #7 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 21:34:43 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' has been recovered (tr. 39-42)
+
+[2026-04-07 21:34:43 #2 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 29508@MININT-01SALKA
+
+[2026-04-07 21:34:43 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 21:34:43 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 21:34:43 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 21:34:43 #6 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 21:34:43 #7 type] 
+Type domain.Review is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 22:38:51 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 26296@MININT-01SALKA
+
+[2026-04-07 22:38:51 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 22:38:51 #3 type.registry] 
+New type domain.Report
+
+[2026-04-07 22:38:51 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 22:38:51 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 22:38:51 #6 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 22:38:51 #7 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-07 22:38:51 #8 type] 
+Type domain.Report is not enhanced.
+
+[2026-04-07 22:39:32 #9 type.registry] 
+New type java.util.ArrayList<domain.Report>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 22:54:45 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' has been recovered (tr. 43-46)
+
+[2026-04-07 22:54:45 #2 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 4064@MININT-01SALKA
+
+[2026-04-07 22:54:46 #3 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 22:54:46 #4 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 22:54:46 #5 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 22:54:46 #6 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 22:54:46 #7 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-07 22:54:46 #8 type] 
+Type domain.Report is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 22:57:39 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 11116@MININT-01SALKA
+
+[2026-04-07 22:57:39 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 22:57:39 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 22:57:39 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 22:57:39 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 22:57:39 #6 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-07 22:57:39 #7 type] 
+Type domain.Report is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-07 23:00:42 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 12372@MININT-01SALKA
+
+[2026-04-07 23:00:42 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-07 23:00:42 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-07 23:00:42 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-07 23:00:42 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-07 23:00:42 #6 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-07 23:00:42 #7 type] 
+Type domain.Report is not enhanced.
+

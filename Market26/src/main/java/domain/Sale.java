@@ -31,6 +31,7 @@ public class Sale implements Serializable {
 	@OneToOne
 	private Buyer buyer;
 	private Seller seller;  
+	private String paymentMethod; // "Efectivo", "Tarjeta", o "No pagado"
 	//
 	// Una oferta puede recibir múltiples contraofertas
 	@OneToMany(mappedBy="sale", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -63,7 +64,7 @@ public class Sale implements Serializable {
 				//System.out.println("Write error for " + outputfile.getPath()  ": " + ex.getMessage());
 		}
 		}
-
+		this.paymentMethod = "No pagado"; // Añade esto dentro del constructor
 		this.seller = seller;
 		
 	}
@@ -245,6 +246,15 @@ public class Sale implements Serializable {
 		
 	public void addCounterOffer(CounterOffer offer) {
 		this.counterOffers.add(offer);
+	}
+	
+	// --- Métodos de Pago ---
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 

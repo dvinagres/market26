@@ -3,7 +3,7 @@ package gui;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.List;
-import java.util.ResourceBundle; // Importante
+import java.util.ResourceBundle; 
 import businessLogic.BLFacade;
 import domain.Buyer;
 import domain.Sale;
@@ -18,9 +18,8 @@ public class AcceptSaleGUI extends JFrame {
     public AcceptSaleGUI(Buyer buyer) {
         this.currentBuyer = buyer;
         
-        // Título dinámico con el nombre del comprador
         setTitle(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Title") + " - " + buyer.getName());
-        setBounds(100, 100, 480, 250); 
+        setBounds(100, 100, 480, 280); 
         getContentPane().setLayout(null);
 
         JLabel lblInfo = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.SearchLabel"));
@@ -49,20 +48,36 @@ public class AcceptSaleGUI extends JFrame {
         btnCounterOffer.setEnabled(false); 
         getContentPane().add(btnCounterOffer);
         
-        // Botón para hacer la review
         JButton btnRate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Rate")); 
-        btnRate.setBounds(158, 169, 150, 29);
+        btnRate.setBounds(30, 169, 200, 30);
         btnRate.setEnabled(false);
         getContentPane().add(btnRate);
+        
+        JButton btnReport = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BtnReport")); 
+        btnReport.setBounds(240, 169, 190, 30);
+        btnReport.setEnabled(false);
+        getContentPane().add(btnReport);
+
         btnRate.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		int selectedIdx = comboResults.getSelectedIndex();
-        		Sale selectedSale = currentSalesList.get(selectedIdx);
-        		Seller targetSeller = selectedSale.getSeller();
-        		
-        		RateGUI rateWindow = new RateGUI(currentBuyer, targetSeller);
-        		rateWindow.setVisible(true);
-        	}
+            public void actionPerformed(ActionEvent e) {
+                int selectedIdx = comboResults.getSelectedIndex();
+                Sale selectedSale = currentSalesList.get(selectedIdx);
+                Seller targetSeller = selectedSale.getSeller();
+                
+                RateGUI rateWindow = new RateGUI(currentBuyer, targetSeller);
+                rateWindow.setVisible(true);
+            }
+        });
+        
+        btnReport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIdx = comboResults.getSelectedIndex();
+                Sale selectedSale = currentSalesList.get(selectedIdx);
+                Seller targetSeller = selectedSale.getSeller();
+                
+                ReportGUI reportWindow = new ReportGUI(currentBuyer, targetSeller);
+                reportWindow.setVisible(true);
+            }
         });
 
         btnSearch.addActionListener(new ActionListener() {
@@ -78,18 +93,16 @@ public class AcceptSaleGUI extends JFrame {
                     btnBuy.setEnabled(false);
                     btnCounterOffer.setEnabled(false);
                     btnRate.setEnabled(false);
+                    btnReport.setEnabled(false);
                 } else {
                     for (Sale s : currentSalesList) {
-//                       comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
-//                           ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€");
-                    	
-                    	// Añadido el nombre del vendedor a la lista de las ventas
-                    	 comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
+                         comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
                              ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€" + " | " + s.getSeller().getName());
                     }
                     btnBuy.setEnabled(true); 
                     btnCounterOffer.setEnabled(true);
                     btnRate.setEnabled(true);
+                    btnReport.setEnabled(true); 
                 }
             }
         });
@@ -103,7 +116,23 @@ public class AcceptSaleGUI extends JFrame {
                     boolean success = facade.acceptSale(currentBuyer.getEmail(), selectedSale.getSaleNumber());
                     
                     if (success) {
-                        JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuySuccess") + " " + selectedSale.getPrice() + "€!");
+                        String card = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Card");
+                        String cash = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Cash");
+                        String[] opciones = {card, cash};
+                        
+                        int seleccion = JOptionPane.showOptionDialog(null,
+                                ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PayQuestion"),
+                                ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PayMethod"),
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                                null, opciones, opciones);
+
+                        String paymentMethod = (seleccion == 0) ? "Tarjeta" : "Efectivo"; 
+                        String paidWithText = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PaidWith");
+                        String methodDisp = (seleccion == 0) ? card : cash; 
+
+                        facade.paySale(selectedSale.getSaleNumber(), paymentMethod);
+                        
+                        JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuySuccess") + " " + selectedSale.getPrice() + "€ " + paidWithText + " " + methodDisp + "!");
                         dispose(); 
                     } else {
                         JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuyError"));
