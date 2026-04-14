@@ -1,0 +1,5 @@
+--- CASOS DE USO PARA LA ITERACIÓN 3 DE MARKET26 -- 
+
+1. El comprador puede añadir un producto a su lista de favoritos al consultar la venta
+
+2. Al pagar el producto, el comprador elige si lo recoge en mano o solicita envío a domicilio introduciendo su dirección postal
