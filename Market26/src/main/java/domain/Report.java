@@ -11,7 +11,7 @@ public class Report implements Serializable {
     private Integer id;
     
     private String reason; // Motivo de la denuncia
-    private String date; // Lo guardamos como String igual que hizo tu amigo en Review
+    private String date; 
     
     private String buyerName; // Nombre de quien denuncia
     
