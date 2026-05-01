@@ -1,0 +1,46 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-24 09:04:32 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 35584@MININT-01SALKA
+
+[2026-04-24 09:04:32 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-24 09:04:32 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-24 09:04:32 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-24 09:04:32 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-24 09:04:32 #6 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-24 09:04:32 #7 type] 
+Type domain.Report is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-24 10:12:24 #1 store] 
+Database 'C:\Users\usuario\git\market26\Market26\products.temp' is opened by 7640@MININT-01SALKA
+
+[2026-04-24 10:12:24 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-24 10:12:24 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-24 10:12:24 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-24 10:12:24 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-24 10:12:24 #6 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-24 10:12:24 #7 type] 
+Type domain.Report is not enhanced.
+

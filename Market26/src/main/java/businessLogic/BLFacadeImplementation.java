@@ -218,10 +218,10 @@ public class BLFacadeImplementation  implements BLFacade {
 		return res;
 	}
 		
-	// --- Pago de Ofertas ---
-	public boolean paySale(Integer saleNumber, String paymentMethod) {
+	// --- Pago de Ofertas y Envíos ---
+	public boolean paySale(Integer saleNumber, String paymentMethod, String deliveryType, String address) {
 		dbManager.open();
-		boolean res = dbManager.paySale(saleNumber, paymentMethod);
+		boolean res = dbManager.paySale(saleNumber, paymentMethod, deliveryType, address);
 		dbManager.close();
 		return res;
 	}

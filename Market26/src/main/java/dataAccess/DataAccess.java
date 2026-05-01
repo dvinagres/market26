@@ -545,15 +545,20 @@ public void open(){
 			db.getTransaction().rollback();
 			return false;
 		}
-				
-		// --- Pagos ---
-		public boolean paySale(Integer saleNumber, String paymentMethod) {
+			
+		// --- Pagos y Envíos ---
+		public boolean paySale(Integer saleNumber, String paymentMethod, String deliveryType, String address) {
 			db.getTransaction().begin();
-			Sale s = db.find(Sale.class, saleNumber);
+			domain.Sale s = db.find(domain.Sale.class, saleNumber);
 					
-			// Si la oferta existe y ya tiene un comprador asignado...
 			if (s != null && s.getBuyer() != null) {
-				s.setPaymentMethod(paymentMethod); // Efectivo o Tarjeta
+				s.setPaymentMethod(paymentMethod); // 
+				
+				//Creamos y guardamos el envío
+				domain.Shipment shipment = new domain.Shipment(deliveryType, address, s, s.getBuyer());
+				db.persist(shipment); 
+				s.setShipment(shipment);
+				
 				db.getTransaction().commit();
 				return true;
 			}

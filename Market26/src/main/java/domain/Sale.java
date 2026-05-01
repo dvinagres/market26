@@ -1,6 +1,7 @@
 package domain;
 
 import java.awt.image.BufferedImage;
+
 import java.io.*;
 import java.util.Date;
 
@@ -32,6 +33,8 @@ public class Sale implements Serializable {
 	private Buyer buyer;
 	private Seller seller;  
 	private String paymentMethod; // "Efectivo", "Tarjeta", o "No pagado"
+	@OneToOne(cascade=CascadeType.PERSIST)
+	private Shipment shipment; // El envío asociado a esta venta
 	//
 	// Una oferta puede recibir múltiples contraofertas
 	@OneToMany(mappedBy="sale", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -256,7 +259,13 @@ public class Sale implements Serializable {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-
-
 	
+	public Shipment getShipment() {
+		return shipment;
+	}
+
+	public void setShipment(Shipment shipment) {
+		this.shipment = shipment;
+	}
+
 }
