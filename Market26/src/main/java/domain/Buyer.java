@@ -43,9 +43,9 @@ public class Buyer implements Serializable {
     
     public void addAcceptedSale(Sale sale) {this.acceptedSales.add(sale);}
     
-    public List<Sale> getWishList() {return wishlist;}
-    public void setWishList(List<Sale> wishlist) {this.wishlist = wishlist;}
-    public void addToWishList(Sale sale) {
+    public List<Sale> getWishlist() {return wishlist;}
+    public void setWishlist(List<Sale> wishlist) {this.wishlist = wishlist;}
+    public void addToWishlist(Sale sale) {
     	if(!this.wishlist.contains(sale)) {
     		this.wishlist.add(sale);
     	}

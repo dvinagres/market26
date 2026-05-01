@@ -10,6 +10,7 @@ import dataAccess.DataAccess;
 import domain.Sale;
 import domain.CounterOffer;
 import domain.Review;
+import domain.Report;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -208,20 +209,26 @@ public class BLFacadeImplementation  implements BLFacade {
 		List<Review> r = dbManager.getSellerReviews(sellerMail);
 		return r;
 	}
+	
 	// --- Report (Denuncias) ---
-		public boolean addReport(String sellerMail, domain.Report report) {
-			dbManager.open();
-			boolean res = dbManager.addReport(sellerMail, report);
-			dbManager.close();
-			return res;
-		}
+	public boolean addReport(String sellerMail, Report report) {
+		dbManager.open();
+		boolean res = dbManager.addReport(sellerMail, report);
+		dbManager.close();
+		return res;
+	}
 		
-		// --- Pago de Ofertas ---
-		public boolean paySale(Integer saleNumber, String paymentMethod) {
-			dbManager.open();
-			boolean res = dbManager.paySale(saleNumber, paymentMethod);
-			dbManager.close();
-			return res;
-		}
+	// --- Pago de Ofertas ---
+	public boolean paySale(Integer saleNumber, String paymentMethod) {
+		dbManager.open();
+		boolean res = dbManager.paySale(saleNumber, paymentMethod);
+		dbManager.close();
+		return res;
+	}
+	
+	// Wishlist
+	public boolean addToWishlist(String buyerEmail, int saleNumber) {
+	    return dbManager.addToWishlist(buyerEmail, saleNumber);
+	}
 }
 

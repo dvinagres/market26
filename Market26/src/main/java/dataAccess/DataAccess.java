@@ -534,7 +534,7 @@ public void open(){
 		public boolean addReport(String sellerMail, domain.Report report) {
 			db.getTransaction().begin();
 					
-			domain.Seller s = db.find(domain.Seller.class, sellerMail);
+			Seller s = db.find(Seller.class, sellerMail);
 			if (s != null) {
 				s.addReportToList(report); // Añadimos la denuncia a la lista del vendedor
 				db.getTransaction().commit();
@@ -548,7 +548,7 @@ public void open(){
 		// --- Pagos ---
 		public boolean paySale(Integer saleNumber, String paymentMethod) {
 			db.getTransaction().begin();
-			domain.Sale s = db.find(domain.Sale.class, saleNumber);
+			Sale s = db.find(Sale.class, saleNumber);
 					
 			// Si la oferta existe y ya tiene un comprador asignado...
 			if (s != null && s.getBuyer() != null) {
@@ -558,5 +558,19 @@ public void open(){
 			}
 			db.getTransaction().rollback();
 			return false;
+		}
+		
+		// Wishlist
+		public boolean addToWishlist(String buyerEmail, int saleNumber) {
+		    db.getTransaction().begin();
+		    Buyer buyer = db.find(Buyer.class, buyerEmail);
+		    Sale sale = db.find(Sale.class, saleNumber);
+		    if (buyer != null && sale != null && !buyer.getWishlist().contains(sale)) {
+		        buyer.addToWishlist(sale);
+		        db.getTransaction().commit();
+		        return true;
+		    }
+		    db.getTransaction().commit();
+		    return false;
 		}
 }

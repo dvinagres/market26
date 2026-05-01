@@ -7,6 +7,7 @@ import java.util.List;
 import domain.Sale;
 import domain.CounterOffer;
 import domain.Review;
+import domain.Report;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -91,8 +92,11 @@ public interface BLFacade  {
 	public boolean addReview(String sellerMail, Review review);
 	public List<Review> getSellerReviews(String sellerMail);
 	// -- Métodos para Denuncias (Reports) --
-	public boolean addReport(String sellerMail, domain.Report report);
+	public boolean addReport(String sellerMail, Report report);
 		
-		// -- Métodos para Pagos --
+	// -- Métodos para Pagos --
 	public boolean paySale(Integer saleNumber, String paymentMethod);
+	
+	// -- Métodos para Wishlist --
+	public boolean addToWishlist(String buyerEmail, int saleNumber);
 }
