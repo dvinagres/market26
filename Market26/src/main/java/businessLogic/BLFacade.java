@@ -94,8 +94,8 @@ public interface BLFacade  {
 	// -- Métodos para Denuncias (Reports) --
 	public boolean addReport(String sellerMail, Report report);
 		
-	// -- Métodos para Pagos --
-	public boolean paySale(Integer saleNumber, String paymentMethod);
+	// -- Métodos para Pagos y Envíos --
+		public boolean paySale(Integer saleNumber, String paymentMethod, String deliveryType, String address);
 	
 	// -- Métodos para Wishlist --
 	public boolean addToWishlist(String buyerEmail, int saleNumber);

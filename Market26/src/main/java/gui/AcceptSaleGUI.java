@@ -117,38 +117,75 @@ public class AcceptSaleGUI extends JFrame {
         });
 
         btnBuy.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int selectedIndex = tableResults.getSelectedRow();
-                if (selectedIndex >= 0) {
-                    Sale selectedSale = currentSalesList.get(selectedIndex);
-                    BLFacade facade = MainGUI.getBusinessLogic();
-                    boolean success = facade.acceptSale(currentBuyer.getEmail(), selectedSale.getSaleNumber());
-                    
-                    if (success) {
-                        String card = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Card");
-                        String cash = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Cash");
-                        String[] opciones = {card, cash};
-                        
-                        int seleccion = JOptionPane.showOptionDialog(null,
-                                ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PayQuestion"),
-                                ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PayMethod"),
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                null, opciones, opciones);
+			public void actionPerformed(ActionEvent e) {
+				int selectedIndex = tableResults.getSelectedRow();
+				if (selectedIndex >= 0) {
+					Sale selectedSale = currentSalesList.get(selectedIndex);
+					BLFacade facade = MainGUI.getBusinessLogic();
+					boolean success = facade.acceptSale(currentBuyer.getEmail(), selectedSale.getSaleNumber());
+					
+					if (success) {
+		
+						String card = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Card");
+						String cash = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Cash");
+						String[] opcionesPago = {card, cash};
+						
+						int seleccionPago = JOptionPane.showOptionDialog(null,
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PayQuestion"),
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PayMethod"),
+								JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+								null, opcionesPago, opcionesPago);
 
-                        String paymentMethod = (seleccion == 0) ? "Tarjeta" : "Efectivo"; 
-                        String paidWithText = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PaidWith");
-                        String methodDisp = (seleccion == 0) ? card : cash; 
+						String paymentMethod = (seleccionPago == 0) ? "Tarjeta" : "Efectivo"; 
+						
 
-                        facade.paySale(selectedSale.getSaleNumber(), paymentMethod);
-                        
-                        JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuySuccess") + " " + selectedSale.getPrice() + "€ " + paidWithText + " " + methodDisp + "!");
-                        dispose(); 
-                    } else {
-                        JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuyError"));
-                    }
-                }
-            }
-        });
+						String inHand = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.InHand");
+						String homeDelivery = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.HomeDelivery");
+						String[] opcionesEnvio = {inHand, homeDelivery};
+						
+						int seleccionEnvio = JOptionPane.showOptionDialog(null,
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.DeliveryQuestion"),
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.DeliveryMethod"),
+								JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+								null, opcionesEnvio, opcionesEnvio[0]);
+						
+			
+						String dbDeliveryType = (seleccionEnvio == 1) ? "A domicilio" : "En mano";
+						String address = ""; 
+						
+						
+						if (seleccionEnvio == 1) {
+							address = JOptionPane.showInputDialog(null, 
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.AddressPrompt"), 
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.AddressTitle"), 
+								JOptionPane.QUESTION_MESSAGE);
+							
+						
+							if (address == null || address.trim().isEmpty()) {
+								address = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.NoAddress");
+							}
+						}
+
+						
+						facade.paySale(selectedSale.getSaleNumber(), paymentMethod, dbDeliveryType, address);
+						
+						String paidWithText = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.PaidWith");
+						String methodDisp = (seleccionPago == 0) ? card : cash; 
+						String deliveryLabel = ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.DeliveryLabel");
+						String chosenDeliveryDisp = (seleccionEnvio == 1) ? homeDelivery : inHand;
+
+						JOptionPane.showMessageDialog(null, 
+								ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuySuccess") + " " + 
+								selectedSale.getPrice() + "€ " + paidWithText + " " + methodDisp + "!\n" + 
+								deliveryLabel + " " + chosenDeliveryDisp);
+						
+						dispose(); 
+					} else {
+						JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BuyError"));
+					}
+				}
+			}
+		});
 
         btnCounterOffer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
