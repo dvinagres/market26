@@ -99,4 +99,5 @@ public interface BLFacade  {
 	
 	// -- Métodos para Wishlist --
 	public boolean addToWishlist(String buyerEmail, int saleNumber);
+	public List<Sale> getWishlist(String buyerEmail);
 }

@@ -25,6 +25,7 @@ import domain.Sale;
 import domain.Buyer;
 import domain.CounterOffer;
 import domain.Review;
+import domain.Report;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -338,7 +339,7 @@ public void open(){
 		// Devuelve una lista con todas las ofertas disponibles que CONTENGAN ese nombre
 		public List<Sale> getActiveSalesByTitle(String title) {
 			// Cambiamos el '=' por 'LIKE'
-			javax.persistence.TypedQuery<Sale> query = db.createQuery(
+			TypedQuery<Sale> query = db.createQuery(
 				"SELECT s FROM Sale s WHERE s.title LIKE ?1 AND s.buyer IS NULL", Sale.class);
 			
 			// Añadimos los '%' para que busque la palabra en cualquier parte del texto
@@ -531,7 +532,7 @@ public void open(){
 		}
 		
 		// --- Denuncias (Reports) ---
-		public boolean addReport(String sellerMail, domain.Report report) {
+		public boolean addReport(String sellerMail, Report report) {
 			db.getTransaction().begin();
 					
 			Seller s = db.find(Seller.class, sellerMail);
@@ -562,15 +563,28 @@ public void open(){
 		
 		// Wishlist
 		public boolean addToWishlist(String buyerEmail, int saleNumber) {
+		    if (!db.isOpen()) open();
 		    db.getTransaction().begin();
 		    Buyer buyer = db.find(Buyer.class, buyerEmail);
 		    Sale sale = db.find(Sale.class, saleNumber);
-		    if (buyer != null && sale != null && !buyer.getWishlist().contains(sale)) {
-		        buyer.addToWishlist(sale);
-		        db.getTransaction().commit();
-		        return true;
+		    if (buyer != null && sale != null) {
+		        List<Sale> list = buyer.getWishlist();
+		        if (!list.contains(sale)) {
+		            buyer.addToWishlist(sale);
+		            db.getTransaction().commit();
+		            return true;
+		        }
 		    }
 		    db.getTransaction().commit();
 		    return false;
+		}
+		
+		public List<Sale> getWishlist(String buyerEmail) {
+		    if (!db.isOpen()) open();
+		    Buyer buyer = db.find(Buyer.class, buyerEmail);
+		    if (buyer != null) {
+		        return buyer.getWishlist();
+		    }
+		    return new ArrayList<Sale>();
 		}
 }

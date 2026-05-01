@@ -131,16 +131,17 @@ public class ShowSaleGUI extends JFrame {
 		statusField.setBounds(137, 191, 92, 16);
 		getContentPane().add(statusField);
 		setVisible(true);
-	}	 
-	public BufferedImage rescale(BufferedImage originalImage)
-    {
+		
+	}
+	
+	public BufferedImage rescale(BufferedImage originalImage){
         BufferedImage resizedImage = new BufferedImage(baseSize, baseSize, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = resizedImage.createGraphics();
         g.drawImage(originalImage, 0, 0, baseSize, baseSize, null);
         g.dispose();
         return resizedImage;
     }
-	
+		
 	
 }
 

@@ -230,5 +230,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	public boolean addToWishlist(String buyerEmail, int saleNumber) {
 	    return dbManager.addToWishlist(buyerEmail, saleNumber);
 	}
+	
+	public List<Sale> getWishlist(String buyerEmail) {
+	    return dbManager.getWishlist(buyerEmail);
+	}
 }
 

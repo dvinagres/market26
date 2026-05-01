@@ -23,7 +23,7 @@ public class InterBuyerGUI extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(3, 1, 0, 0));
+		contentPane.setLayout(new GridLayout(4, 1, 0, 0));
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("InterBuyerGUI.Title") + ": " + buyer.getName());
         setBounds(100, 100, 480, 250); 
         
@@ -51,6 +51,18 @@ public class InterBuyerGUI extends JFrame {
         		EditProfileGUI editWindow = new EditProfileGUI(buyer);
         		editWindow.setVisible(true);
         	}
+        });
+        
+        // Botón para ver wishlist
+        JButton btnViewWishlist = new JButton("Ver wishlist");
+        btnViewWishlist.setBounds(40, 150, 200, 30);
+        getContentPane().add(btnViewWishlist);
+
+        btnViewWishlist.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                WishlistGUI wishlistWindow = new WishlistGUI(currentBuyer);
+                wishlistWindow.setVisible(true);
+            }
         });
 	}
 

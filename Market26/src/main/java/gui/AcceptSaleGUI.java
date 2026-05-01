@@ -16,6 +16,7 @@ public class AcceptSaleGUI extends JFrame {
     private DefaultTableModel tableModel;
     private Buyer currentBuyer;
     private List<Sale> currentSalesList;
+    private JButton btnWishlist;
 
     public AcceptSaleGUI(Buyer buyer) {
         this.currentBuyer = buyer;
@@ -100,6 +101,7 @@ public class AcceptSaleGUI extends JFrame {
                     btnCounterOffer.setEnabled(false);
                     btnRate.setEnabled(false);
                     btnReport.setEnabled(false);
+                    btnWishlist.setEnabled(false);
                 } else {
                     for (Sale s : currentSalesList) {
                         Object[] row = {s.getSaleNumber(), s.getTitle(), s.getPrice() + "€", s.getSeller().getName()};
@@ -109,6 +111,7 @@ public class AcceptSaleGUI extends JFrame {
                     btnCounterOffer.setEnabled(true);
                     btnRate.setEnabled(true);
                     btnReport.setEnabled(true); 
+                    btnWishlist.setEnabled(true);
                 }
             }
         });
@@ -183,6 +186,30 @@ public class AcceptSaleGUI extends JFrame {
                             JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.InvalidFormat"), 
                                 ResourceBundle.getBundle("Etiquetas").getString("ErrorFormat"), JOptionPane.ERROR_MESSAGE);
                         }
+                    }
+                }
+            }
+        });
+        
+        // Wishlist
+        this.setBounds(100, 100, 500, 380);
+
+        btnWishlist = new JButton("test");
+        btnWishlist.setBounds(30, 280, 420, 30);
+        btnWishlist.setEnabled(false);
+        getContentPane().add(btnWishlist);
+
+        btnWishlist.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIdx = tableResults.getSelectedRow();
+                if (selectedIdx >= 0) {
+                    Sale selectedSale = currentSalesList.get(selectedIdx);
+                    BLFacade facade = MainGUI.getBusinessLogic();
+                    boolean success = facade.addToWishlist(currentBuyer.getEmail(), selectedSale.getSaleNumber());
+                    if (success) {
+                        JOptionPane.showMessageDialog(null, "exito");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "error");
                     }
                 }
             }
