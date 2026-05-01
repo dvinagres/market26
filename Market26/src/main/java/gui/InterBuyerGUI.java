@@ -54,7 +54,7 @@ public class InterBuyerGUI extends JFrame {
         });
         
         // Botón para ver wishlist
-        JButton btnViewWishlist = new JButton("Ver wishlist");
+        JButton btnViewWishlist = new JButton(ResourceBundle.getBundle("Etiquetas").getString("InterBuyerGUI.Wish"));
         btnViewWishlist.setBounds(40, 150, 200, 30);
         getContentPane().add(btnViewWishlist);
 

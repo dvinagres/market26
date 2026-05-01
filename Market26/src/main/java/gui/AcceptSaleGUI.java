@@ -194,7 +194,7 @@ public class AcceptSaleGUI extends JFrame {
         // Wishlist
         this.setBounds(100, 100, 500, 380);
 
-        btnWishlist = new JButton("test");
+        btnWishlist = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.WishAdd"));
         btnWishlist.setBounds(30, 280, 420, 30);
         btnWishlist.setEnabled(false);
         getContentPane().add(btnWishlist);
@@ -207,9 +207,9 @@ public class AcceptSaleGUI extends JFrame {
                     BLFacade facade = MainGUI.getBusinessLogic();
                     boolean success = facade.addToWishlist(currentBuyer.getEmail(), selectedSale.getSaleNumber());
                     if (success) {
-                        JOptionPane.showMessageDialog(null, "exito");
+                        JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.WishOk"));
                     } else {
-                        JOptionPane.showMessageDialog(null, "error");
+                        JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.WishErr"));
                     }
                 }
             }

@@ -16,14 +16,14 @@ public class WishlistGUI extends JFrame {
 
     public WishlistGUI(Buyer buyer) {
         this.buyer = buyer;
-        setTitle("title");
+        setTitle(ResourceBundle.getBundle("Etiquetas").getString("WishlistGUI.Title"));
         setBounds(100, 100, 450, 320);
         getContentPane().setLayout(null);
 
         String[] columnNames = {
-            "a",
-            "b",
-            "c"
+        	ResourceBundle.getBundle("Etiquetas").getString("WishlistGUI.Col1"),
+        	ResourceBundle.getBundle("Etiquetas").getString("WishlistGUI.Col2"),
+        	ResourceBundle.getBundle("Etiquetas").getString("WishlistGUI.Col3")
         };
         
         tableModel = new DefaultTableModel(null, columnNames);
@@ -32,7 +32,7 @@ public class WishlistGUI extends JFrame {
         scrollPane.setBounds(25, 20, 400, 180);
         getContentPane().add(scrollPane);
 
-        JButton btnClose = new JButton("cerrar");
+        JButton btnClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WishlistGUI.Close"));
         btnClose.setBounds(160, 220, 120, 30);
         getContentPane().add(btnClose);
         btnClose.addActionListener(e -> dispose());
