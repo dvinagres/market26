@@ -1,9 +1,10 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.List;
-import java.util.ResourceBundle; 
+import java.util.ResourceBundle;
 import businessLogic.BLFacade;
 import domain.Buyer;
 import domain.Sale;
@@ -11,7 +12,8 @@ import domain.Seller;
 
 public class AcceptSaleGUI extends JFrame {
     private JTextField txtSaleTitle;
-    private JComboBox<String> comboResults;
+    private JTable tableResults;
+    private DefaultTableModel tableModel;
     private Buyer currentBuyer;
     private List<Sale> currentSalesList;
 
@@ -19,7 +21,7 @@ public class AcceptSaleGUI extends JFrame {
         this.currentBuyer = buyer;
         
         setTitle(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Title") + " - " + buyer.getName());
-        setBounds(100, 100, 480, 280); 
+        setBounds(100, 100, 500, 350); 
         getContentPane().setLayout(null);
 
         JLabel lblInfo = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.SearchLabel"));
@@ -34,49 +36,54 @@ public class AcceptSaleGUI extends JFrame {
         btnSearch.setBounds(190, 50, 100, 25);
         getContentPane().add(btnSearch);
 
-        comboResults = new JComboBox<String>();
-        comboResults.setBounds(30, 90, 400, 25); 
-        getContentPane().add(comboResults);
+        String[] columnNames = {"ID", "Título", "Precio", "Vendedor"};
+        tableModel = new DefaultTableModel(null, columnNames);
+        tableResults = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(tableResults);
+        scrollPane.setBounds(30, 90, 420, 100); 
+        getContentPane().add(scrollPane);
 
         JButton btnBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BtnBuy"));
-        btnBuy.setBounds(30, 127, 200, 30);
+        btnBuy.setBounds(30, 200, 200, 30);
         btnBuy.setEnabled(false); 
         getContentPane().add(btnBuy);
 
         JButton btnCounterOffer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BtnCounterOffer"));
-        btnCounterOffer.setBounds(240, 127, 190, 30);
+        btnCounterOffer.setBounds(240, 200, 210, 30);
         btnCounterOffer.setEnabled(false); 
         getContentPane().add(btnCounterOffer);
         
         JButton btnRate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.Rate")); 
-        btnRate.setBounds(30, 169, 200, 30);
+        btnRate.setBounds(30, 240, 200, 30);
         btnRate.setEnabled(false);
         getContentPane().add(btnRate);
         
         JButton btnReport = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.BtnReport")); 
-        btnReport.setBounds(240, 169, 190, 30);
+        btnReport.setBounds(240, 240, 210, 30);
         btnReport.setEnabled(false);
         getContentPane().add(btnReport);
 
         btnRate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedIdx = comboResults.getSelectedIndex();
-                Sale selectedSale = currentSalesList.get(selectedIdx);
-                Seller targetSeller = selectedSale.getSeller();
-                
-                RateGUI rateWindow = new RateGUI(currentBuyer, targetSeller);
-                rateWindow.setVisible(true);
+                int selectedIdx = tableResults.getSelectedRow();
+                if (selectedIdx >= 0) {
+                    Sale selectedSale = currentSalesList.get(selectedIdx);
+                    Seller targetSeller = selectedSale.getSeller();
+                    RateGUI rateWindow = new RateGUI(currentBuyer, targetSeller);
+                    rateWindow.setVisible(true);
+                }
             }
         });
         
         btnReport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedIdx = comboResults.getSelectedIndex();
-                Sale selectedSale = currentSalesList.get(selectedIdx);
-                Seller targetSeller = selectedSale.getSeller();
-                
-                ReportGUI reportWindow = new ReportGUI(currentBuyer, targetSeller);
-                reportWindow.setVisible(true);
+                int selectedIdx = tableResults.getSelectedRow();
+                if (selectedIdx >= 0) {
+                    Sale selectedSale = currentSalesList.get(selectedIdx);
+                    Seller targetSeller = selectedSale.getSeller();
+                    ReportGUI reportWindow = new ReportGUI(currentBuyer, targetSeller);
+                    reportWindow.setVisible(true);
+                }
             }
         });
 
@@ -86,18 +93,17 @@ public class AcceptSaleGUI extends JFrame {
                 String title = txtSaleTitle.getText();
                 
                 currentSalesList = facade.getActiveSalesByTitle(title);
-                comboResults.removeAllItems(); 
+                tableModel.setRowCount(0); 
                 
                 if (currentSalesList.isEmpty()) {
-                    comboResults.addItem(ResourceBundle.getBundle("Etiquetas").getString("AcceptSale.NoResults"));
                     btnBuy.setEnabled(false);
                     btnCounterOffer.setEnabled(false);
                     btnRate.setEnabled(false);
                     btnReport.setEnabled(false);
                 } else {
                     for (Sale s : currentSalesList) {
-                         comboResults.addItem("ID: " + s.getSaleNumber() + " | " + s.getTitle() + " | " + 
-                             ResourceBundle.getBundle("Etiquetas").getString("Price") + ": " + s.getPrice() + "€" + " | " + s.getSeller().getName());
+                        Object[] row = {s.getSaleNumber(), s.getTitle(), s.getPrice() + "€", s.getSeller().getName()};
+                        tableModel.addRow(row);
                     }
                     btnBuy.setEnabled(true); 
                     btnCounterOffer.setEnabled(true);
@@ -109,7 +115,7 @@ public class AcceptSaleGUI extends JFrame {
 
         btnBuy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedIndex = comboResults.getSelectedIndex();
+                int selectedIndex = tableResults.getSelectedRow();
                 if (selectedIndex >= 0) {
                     Sale selectedSale = currentSalesList.get(selectedIndex);
                     BLFacade facade = MainGUI.getBusinessLogic();
@@ -143,7 +149,7 @@ public class AcceptSaleGUI extends JFrame {
 
         btnCounterOffer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedIndex = comboResults.getSelectedIndex();
+                int selectedIndex = tableResults.getSelectedRow();
                 if (selectedIndex >= 0) {
                     Sale selectedSale = currentSalesList.get(selectedIndex);
                     
