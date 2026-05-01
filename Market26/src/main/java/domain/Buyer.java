@@ -16,6 +16,8 @@ public class Buyer implements Serializable {
     // Un comprador puede tener muchas ofertas aceptadas
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     private List<Sale> acceptedSales = new ArrayList<Sale>();
+    
+    private List<Sale> wishlist = new ArrayList<Sale>();
 
     public Buyer() {
         super();
@@ -27,7 +29,6 @@ public class Buyer implements Serializable {
         this.password = password;
     }
 
-    // --- Getters y Setters ---
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
@@ -40,8 +41,13 @@ public class Buyer implements Serializable {
     public List<Sale> getAcceptedSales() { return acceptedSales; }
     public void setAcceptedSales(List<Sale> acceptedSales) { this.acceptedSales = acceptedSales; }
     
-    // Método útil para añadir una oferta a la lista del comprador
-    public void addAcceptedSale(Sale sale) {
-        this.acceptedSales.add(sale);
+    public void addAcceptedSale(Sale sale) {this.acceptedSales.add(sale);}
+    
+    public List<Sale> getWishList() {return wishlist;}
+    public void setWishList(List<Sale> wishlist) {this.wishlist = wishlist;}
+    public void addToWishList(Sale sale) {
+    	if(!this.wishlist.contains(sale)) {
+    		this.wishlist.add(sale);
+    	}
     }
 }
