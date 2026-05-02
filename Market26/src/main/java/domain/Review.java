@@ -24,6 +24,10 @@ public class Review implements Serializable {
 		this.date = date;
 	}
 	
+	public String getBuyerName() {
+		return buyerName;
+	}
+	
 	public int getScore() {
 		return score;
 	}
