@@ -1,0 +1,23 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2026-04-23 18:34:16 #1 store] 
+Database '/Users/danielvinagresaenz/git/market26/Market26/products.temp' is opened by 1296@MacBook-Pro-de-Daniel.local
+
+[2026-04-23 18:34:17 #2 type] 
+Type domain.Seller is not enhanced.
+
+[2026-04-23 18:34:17 #3 type] 
+Type domain.Sale is not enhanced.
+
+[2026-04-23 18:34:17 #4 type] 
+Type domain.CounterOffer is not enhanced.
+
+[2026-04-23 18:34:17 #5 type] 
+Type domain.Buyer is not enhanced.
+
+[2026-04-23 18:34:17 #6 type] 
+Type domain.Review is not enhanced.
+
+[2026-04-23 18:34:17 #7 type] 
+Type domain.Report is not enhanced.
+
